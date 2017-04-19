@@ -1,24 +1,94 @@
-# README
+## users_table
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### users_columns
+| name | type |option|
+|:-----------|:-----------:|:-----------:|
+|name|:string||
+|member|:string||
+|profile|:text||
+|avator|:string||
+|works|:text||
+|likes_count|:integer||
+|comments_count|:integer||
+|prototypes_count|:integer||
 
-Things you may want to cover:
+##### mail・passwordカラムはgem devise で生成します。
 
-* Ruby version
+### users_associations
+| association | model|option|
+|:-----------|:-----------:|:-----------:|
+|has_many|:prototypes||
+|has_many|:comments||
+|has_many|:likes||
 
-* System dependencies
+## comments_table
 
-* Configuration
+### comments_columns
+| name | type |option|
+|:-----------|:-----------:|:-----------:|
+|body| :string||
+| user |:references||
+|prototype |:references||
 
-* Database creation
+### comments_associations
+| association | model|option|
+|:-----------|:-----------:|:-----------:|
+|belongs_to|:user|counter_cache: true|
+|belongs_to|:prototype|counter_cache: true|
 
-* Database initialization
 
-* How to run the test suite
+## prototypes_table
 
-* Services (job queues, cache servers, search engines, etc.)
+### prototypes_columns
+|name|type|option|
+|:-----------|:-----------:|:-----------:|
+|catchcopy|:text||
+|concept|:string ||
+|user|:references||
+|likes_count|:integer||
+|comments_count|:integer||
 
-* Deployment instructions
 
-* ...
+### prototypes_associations
+| association | model|option|
+|:-----------|:-----------:|:-----------:|
+|belongs_to|:user|counter_cache :true|
+|has_many|:comments||
+|has_many|:likes||
+|has_many|:images||
+
+
+## likes_table
+
+### likes_columns
+| name | type |option|
+|:-----------|:-----------:|:-----------:|
+|likes_number | :integer||
+|user | :references||
+|prototype| :references||
+
+### likes_associations
+| association | model|option|
+|:-----------|:-----------:|:-----------:|
+|belongs_to|:user|counter_cache: true|
+|belongs_to|:user|counter_cache: true|
+
+## images_table
+
+### images_columns
+| name | type |option|
+|:-----------|:-----------:|:-----------:|
+|enum |image_type: {main: 0, sub: 1}||
+|prototype |:references||
+
+### images_associations
+| association | model|option|
+|:-----------|:-----------:|:-----------:|
+|belongs_to|:prototype||
+
+
+
+
+
+
+
