@@ -1,24 +1,76 @@
-# README
+##==users_table==
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+	### users_columns
 
-Things you may want to cover:
+	* name      :string
+	* mail      :string
+	* password  :string
+	* member    :string
+	* profile   :text
+	* avator    :string
 
-* Ruby version
+	### users_associations
 
-* System dependencies
+	* has_many :prototypes
+	* has_many :comments
+	* has_many :likes
 
-* Configuration
+##==comments_table==
 
-* Database creation
+	### comments_columns
+	* comment     :string
+	* user        :references
+	* prototype   :references
 
-* Database initialization
+	### comments_associations
+	* belongs_to :user
+	* belongs_to :prototype
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+##==prototypes_table==
 
-* Deployment instructions
+	### prototypes_columns
 
-* ...
+	* catchcopy     :text
+	* concept       :string
+	* user        :references
+
+
+	### prototypes_associations
+
+	* belongs_to :user
+	* has_many :comments
+	* has_many :likes
+	* has_many :images
+
+
+##==likes_table==
+
+	### likes_columns
+
+	* likes_number    :integer
+	* user        :references
+	* prototype   :references
+
+	### likes_associations==
+
+	* belongs_to :user
+	* belongs_to :user
+
+##==images_table==
+
+	### images_columns
+
+	* enum image_type: {main: 0, sub: 10}
+	* prototype :references
+
+	### images_associations
+
+	* belongs_to :user
+
+
+
+
+
+
+
